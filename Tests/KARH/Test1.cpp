@@ -42,9 +42,9 @@ void Question::AskQuestion()
 {
 	std::cout << m_Question << "\n\n";
 	std::srand(unsigned(std::time(0)));
-	for (unsigned i = 0; i<m_Answers.size(); ++i)
+	for (unsigned i = 0; i < m_Answers.size(); ++i)
 		std::swap(m_Answers[Randomize(m_Answers.size())], m_Answers[Randomize(m_Answers.size())]);
-	for (unsigned i = 0; i<m_Answers.size(); ++i)
+	for (unsigned i = 0; i < m_Answers.size(); ++i)
 	{
 		char ind = i + 65;
 		std::cout << ind << ' ' << m_Answers[i].text << '\n';
@@ -59,7 +59,7 @@ int Question::AnswerQuestion()
 	tmpToInt = tmp;
 	do
 	{
-		if (tmpToInt<97)
+		if (tmpToInt < 97)
 			tmpToInt -= 65;
 		else
 			tmpToInt -= 97;
@@ -67,20 +67,22 @@ int Question::AnswerQuestion()
 		std::cin >> tmp;
 		tmpToInt = tmp;
 	} while (tmp != 's' && tmp != 'S');
-	std::cout << "Rezultat: " << m_Score << "\nVeren otgovor(i): ";
-	for (unsigned i = 0; i<m_Answers.size(); ++i)
-		if (m_Answers[i].val>0)
+	std::cout << "Резултат: " << m_Score << "\nВерен отговор(и): ";
+	for (unsigned i = 0; i < m_Answers.size(); ++i)
+		if (m_Answers[i].val > 0)
 			std::cout << char(i + 65) << ' ';
-	std::cout << "\nVavedi nqkoi simvol";
-	if (m_Score>0)
+	std::cout << "\nВъведи някой символ...\n";
+	if (m_Score > 0)
 		counter++;
 	return m_Score;
 }
 int main()
 {
-	std::cout << "Test 1 po KARH\nIzgotven ot Mapmo, Dakata, Ikbal i M.\n";
-	std::cout << "Za da otgovorite na nqkoi vupros vavedete bukvata(bukvite) i kogato ste gotovi vavedete 's'\n";
-	std::cout << "Suobrazete se kak raboti std::cin\nAko jelaete simuaciq bez povtorni opiti natisnete r\nAko jelaete vuprosite, koito oburkate da se zapazvat natisnete proizvolen buton\n";
+	setlocale(LC_ALL, "Bulgarian");
+
+	std::cout << "Тест 1 по КАРХ.\nИзготвен от Марто, Даката, Икбал и М.\nПреведен от shlokavica на български от Ицо.\n";
+	std::cout << "За да отговорите на някой въпрос, въведете буквата (буквите) и когато сте готови въведете 's'.\n";
+	std::cout << "Съобразете се как работи std::cin.\nАко желаете симулация без повторни опити, натиснете r.\nАко желаете въпросите, които объркате да се запазват, натиснете произволен бутон.\n";
 	char useless;
 	std::cin >> useless;
 	bool flag = (useless == 'r' ? 1 : 0);
@@ -89,58 +91,58 @@ int main()
 	std::srand(unsigned(std::time(0)));
 
 	//cache memory
-	Question d0("Koi ot trite metoda na razpolagane na blokove ot operativnata pamet se implementira nai-lesno(izberete edno)?");
-	d0.AddOption("Direktno supostavqne", 1);
-	d0.AddOption("Pulna asociativnost", -1);
-	d0.AddOption("Mnojestvena asociativnost", -1);
+	Question d0("Кой от трите метода на разполагане на блокове от оперативната памет се имплементира най-лесно (изберете едно)?");
+	d0.AddOption("Директно съпоставяне", 1);
+	d0.AddOption("Пълна асоциативност", -1);
+	d0.AddOption("Множествена асоциативност", -1);
 	exam.push_back(d0);
 
-	Question d1("Otbelejete nevqrnoto tvurdenie(izberete edno).");
-	d1.AddOption("Glavnata (DRAM) pamet e po-bavna ot SRAM pametta", -1);
-	d1.AddOption("DRAM konsumira poveche energiq ot SRAM", -1);//tuka rusalchoto go smeni,moje i da e greshno
-	d1.AddOption("Cache pametta e malka,burza i SRAM bazirana", -1);
-	d1.AddOption("SRAM e po-evtina ot DRAM", 1);
+	Question d1("Отбележете невярното твърдение (изберете едно):");
+	d1.AddOption("Главната (DRAM) памет е по-бавна от SRAM паметта", -1);
+	d1.AddOption("DRAM консумира повече енергия от SRAM", -1);//tuka rusalchoto go smeni,moje i da e greshno
+	d1.AddOption("Кеш-паметта е малка, бърза и SRAM базирана", -1);
+	d1.AddOption("SRAM е по-евтина DRAM", 1);
 	exam.push_back(d1);
 
-	Question d2("Kakva e korelaciqta kapacitet i burzodeistvie pri kompiyturnite pameti(izberete edno)?");
-	d2.AddOption("Proporcionalna", -1);
-	d2.AddOption("Obratnoproporcionalna", 1);//verniqt
-	d2.AddOption("Nqma korelaciq", -1);
+	Question d2("Каква е корелацията капацитет и бързодействие при компютърните памети (изберете едно)?");
+	d2.AddOption("Пропорционална", -1);
+	d2.AddOption("Обратнопропорционална", 1);//verniqt
+	d2.AddOption("Няма корелация", -1);
 	exam.push_back(d2);
 
-	Question d3("Kakuv e formata na liniqta pri Cache pametta s mnojestvena acociativnost(izberete edno)?");
-	d3.AddOption("tag,duma", -1);
-	d3.AddOption("tag,liniq,duma", -1);
-	d3.AddOption("tag,mnojestwo,duma", 1);//verniqt
+	Question d3("Какъв е формата на линията при кеш-паметта с множествена асоциативност (изберете едно)?");
+	d3.AddOption("таг, дума", -1);
+	d3.AddOption("таг, линия, дума", -1);
+	d3.AddOption("таг, множество, дума", 1);//verniqt
 	exam.push_back(d3);
 
-	Question d4("Koy vid pameti sa po-burzi ot Cache pametite(izberete edno)?");
-	d4.AddOption("Registrite", 1);//tova e verniqt otgovor
-	d4.AddOption("Flash pametite", -1);
-	d4.AddOption("Glavnata pamet", -1);
+	Question d4("Кой вид памети са по-бързи от кеш-паметите (изберете едно)?");
+	d4.AddOption("Регистрите", 1);//tova e verniqt otgovor
+	d4.AddOption("Флаш паметите", -1);
+	d4.AddOption("Главната памет", -1);
 	exam.push_back(d4);
 
-	Question d5("Metodut pri koito obnovqvane na glavnata pamet nastupva asinhronno sled premahvane na duma ot Cache se naricha(izberete edno)?");
-	d5.AddOption("Zashtiten zapis", -1);
+	Question d5("Методът, при който обновяване на главната памет настъпва асинхронно след премахване на дума от кеша се нарича (изберете едно)?");
+	d5.AddOption("Защитен запис", -1);
 	d5.AddOption("Write-back", 1);//verniqt
 	d5.AddOption("Cache-write", -1);
-	d5.AddOption("Write-trough", -1);
+	d5.AddOption("Write-through", -1);
 	exam.push_back(d5);
 
-	Question q31("Metodut pri koito obnovqvane na glavnata pamet nastupva sinhronno sled premahvane na duma ot Cache se naricha(izberete edno)?");
-	q31.AddOption("Zashtiten zapis", -1);
+	Question q31("Методът, при който обновяване на главната памет настъпва синхронно след премахване на дума от кеша се нарича (изберете едно)?");
+	q31.AddOption("Защитен запис", -1);
 	q31.AddOption("Write-back", -1);//verniqt
 	q31.AddOption("Cache-write", -1);
 	q31.AddOption("Write-trough", 1);
 	exam.push_back(q31);
 
-	Question d6("Kakav e formatat na liniqta pri Cache pamet s pulna asociativnost?");
-	d6.AddOption("tag,liniq,duma", -1);
-	d6.AddOption("tag,duma", 1);
-	d6.AddOption("tag,mnojestvo,duma", -1);
+	Question d6("Какъв е форматът на линията при кеш-памет с пълна асоциативност?");
+	d6.AddOption("таг, линия, дума", -1);
+	d6.AddOption("таг, дума", 1);
+	d6.AddOption("таг, множество, дума", -1);
 	exam.push_back(d6);
 
-	Question d7("Dadena e mashina s pobaitovo adresiruema osnovna pamet s razemr 2^16 baita,i razmer na bloka 8 baita.Cache pametta e s \ndirektna organizaciai se sustoi ot 32 linii.Kakuv e maksimalniqt broi baitove, koito mogat da budat razpolojeni w Cache pametta?(izberete edno)?");
+	Question d7("Дадена е машина с побайтово адресируема основна памет с размер 2^16 байта и размер на блока 8 байта. Кеш-паметта е с \nдиректна организация и се състои от 32 линии. Какъв е максималният брой байтове, които могат да бъдат разположени в кеш-паметта (изберете едно)?");
 	d7.AddOption("256B", 1);//verniqt
 	d7.AddOption("1024B", -1);
 	d7.AddOption("512B", -1);
@@ -148,15 +150,15 @@ int main()
 	d7.AddOption("64B", -1);
 	exam.push_back(d7);
 
-	Question d8("LFU e algoritumut za?");
-	d8.AddOption("zamestvane na nai-chesto izpolzvanata stranica ot Cache pametta ", -1);
-	d8.AddOption("zamestvane na nai-neizpolzvanata stranica v Cache pametta", 1);//veren
-	d8.AddOption("zamestvane na nqkoi ot izpolzvanite stranici v Cache pametta", -1);
-	d8.AddOption("periodichno izchistvane priznacite za obrushtenie kum nai-rqdko izpolzvanite stranici v Cache pametta.", -1);
+	Question d8("LFU е алгоритъм за:");
+	d8.AddOption("заместване на най-често използваната страница от кеш-паметта", -1);
+	d8.AddOption("заместване на най-неизползваната страница в кеш-паметта", 1);//veren
+	d8.AddOption("заместване на някои от използваните страници в кеш-паметта", -1);
+	d8.AddOption("периодично изчистване признаците за обръщение към най-рядко използваните страници в кеш-паметта", -1);
 	exam.push_back(d8);
 
-	Question d9("Dadena e mashina s pobaitovo adresiruema osnovna pamet i 2-kraten mnojestveno asociativen Cache. Cache-logikata interpretira adresa ot pametta\nkakto sledva :14 bita za tag, 8 nita za mnojestvo,2 bita za adresirane na duma\n.Kolko e maksimalniq broi na blokovete v glavnata pamet?(izberete edno)?");
-	d9.AddOption("Ne moje da bude opredelen", -1);
+	Question d9("Дадена е машина с побайтово адресируема основна памет и 2-кратен множествено асоциативен кеш. Кеш-логиката интерпретира адреса от паметта\nкакто следва: 14 бита за таг, 8 бита за множество, 2 бита за адресиране на дума\n.Колко е максималният брой на блоковете в главната памет (изберете едно)?");
+	d9.AddOption("Не може да бъде определен", -1);
 	d9.AddOption("2^2", -1);
 	d9.AddOption("2^8", -1);
 	d9.AddOption("2^22", 1);//veren
@@ -164,137 +166,137 @@ int main()
 	d9.AddOption("2^24", -1);
 	exam.push_back(d9);
 
-	Question d10("Cache pamet s asociativna organizaciq e s kapacitet 64 linii,pazdeleni na mnojestva s po 16 linii vsqko.Osnovnata pamet sudurja 4K bloka s po128 dumi vseka.\nPosochete adresniqt format ,koito i suotvetstva:(Formata e : tag,set,word)?");
+	Question d10("Кеш-памет с асоциативна организация е с капацитет 64 линии, раделени на множества с по 16 линии всяко. Основната памет съдържа 4К блока с по 128 думи всяка.\nПосочете адресният формат, който й съответства (форматът е: tag, set, word):");
 	d10.AddOption("8 2 7", 1);//towa bi trqbwalo da e vqrno , but who knows, definitely not Cvetanov
 	d10.AddOption("14 8 4", -1);
 	d10.AddOption("14 8 7", -1);
 	d10.AddOption("4 8 7", -1);
 	exam.push_back(d10);
 
-	Question d11("Metodut,pri koito zapis na dannite se izvurshva samo v Cache pametta,a sustoqnieto na Cache-bloka se otbelqzva \nkato obiknoveno v ypravlqvashtoto pole s priznak,narechen \"update\" ili \"dirty\" se naricha :?");
-	d11.AddOption("Obraten zapis(Write back)", 1);
-	d11.AddOption("Ednovremenen zapis(Write trough)", -1);
+	Question d11("Методът, при който запис на данните се извършва само в кеш-паметта, а състоянието на кеш-блока се отбелязва\nкато обикновено в управляващото поле с признак, наречен \"update\" или \"dirty\" се нарича:");
+	d11.AddOption("Обратен запис (Write back)", 1);
+	d11.AddOption("Едновременен запис (Write through)", -1);
 	exam.push_back(d11);
 
-	Question q36("Kakav e formatat na liniqta pri Cache pamet s asociativna organizaciq?");
-	q36.AddOption("tag,liniq,duma", -1);
-	q36.AddOption("tag,duma", 1);
-	q36.AddOption("tag,mnojestvo,duma", -1);
+	Question q36("Какъв е форматът на линията при кеш-памет с асоциативна организация?");
+	q36.AddOption("таг, линия, дума", -1);
+	q36.AddOption("таг, дума", 1);
+	q36.AddOption("таг, множество, дума", -1);
 	exam.push_back(q36);
 
-	Question q37("Pri koy ot trite metoda na razpolagane blokove ot operacionnata pamet v kesha e nay-malko veroqtno dva bloka da budat zapisani na edna i sushta liniq?");
-	q37.AddOption("Pulna asociativnost", 1);
-	q37.AddOption("Direktno supostavqne", -1);
-	q37.AddOption("Mnojestvena asociativnost", -1);
+	Question q37("При кой от трите метода на разполагане блокове от операционната памет в кеша е най-малко вероятно два блока да бъдат записани на една и съща линия?");
+	q37.AddOption("Пълна асоциативност", 1);
+	q37.AddOption("Директно съпоставяне", -1);
+	q37.AddOption("Множествена асоциативност", -1);
 	exam.push_back(q37);
 
-	Question q0("Dadena e mashina s pobaytovo adresiruema osnovna pamet 2^24 bayta i s kesh za danni s direktna organizaciq i s kapacitet 64k i 32 bajtovi blokove. Kolko bita sa neobhodimi za tag, blok i otmestvane?");
-	q0.AddOption("8 bita za tag, 5 bita za blok, 11 bita za unikalna duma", -1);
-	q0.AddOption("8 bita za tag, 11 bita za blok, 5 bita za unikalna duma", 1);
-	q0.AddOption("11 bita za tag, 8 bita za blok, 5 bita za unikalna duma", -1);
+	Question q0("Дадена е машина с побайтово адресируема основна памет 2^24 байта и с кеш за данни с директна организация и с капацитет 64k и 32 байтови блокове. Колко бита са необходими за таг, блок и отместване?");
+	q0.AddOption("8 бита за таг, 5 бита за блок, 11 бита за уникална дума", -1);
+	q0.AddOption("8 бита за таг, 11 бита за блок, 5 бита за уникална дума", 1);
+	q0.AddOption("11 бита за таг, 8 бита за блок, 5 бита за уникална дума", -1);
 	exam.push_back(q0);
 
-	Question q1("Koi ot izbroenite podhodi sposobstvat za namalqvane na latentnostta pri zarejdane na danni v kesha?");
-	q1.AddOption("Otlojen zapis na danni", 0.34);
-	q1.AddOption("Zarejdane pri poiskvane", 0.33);
-	q1.AddOption("Obraten zapis", -1);
-	q1.AddOption("Ednovremenen zapis", -1);
-	q1.AddOption("Spekulativno zrejdane", 0.33);
+	Question q1("Кои от изброените подходи способстват за намаляване на латентността при зареждане на данни в кеша?");
+	q1.AddOption("Отложен запис на данни", 0.34);
+	q1.AddOption("Зареждане при поискване", 0.33);
+	q1.AddOption("Обратен запис", -1);
+	q1.AddOption("Едновременен запис", -1);
+	q1.AddOption("Спекулативно зареждане", 0.33);
 	exam.push_back(q1);
 
-	Question q25("Koe ot izbroenite ne e vqrno za kesh pametta?");
-	q25.AddOption("Namira se v adresnoto prostranstvo na procesora i moje da se adresira s pomoshta na mashinnite instrukcii", 1);
-	q25.AddOption("Osigurqva burz dostup do intenzivno izpolzvanite danni chrez tqhnoto predvaritelno zarejdane", -1);
-	q25.AddOption("Suglasuva interfeisa na procesora i kontrolera na pametta", -1);
+	Question q25("Кое от изброените не е вярно за кеш-паметта?");
+	q25.AddOption("Намира се в адресното пространство на процесора и може да се адресира с помощта на машинните инструкции", 1);
+	q25.AddOption("Осигурява бърз достъп до интензивно използваните данни чрез тяхното предварително зареждане", -1);
+	q25.AddOption("Съгласува интерфейса на процесора и контролера на паметта", -1);
 	exam.push_back(q25);
 
-	Question q33("Koi ot izbroenite algoritmi za upravlenie na zamestvaneto na blokove pri kesh pametite se osnovavat na ocenka na veroqtnostta za obryshtenie kum bloka v budeshte vreme?");
-	q33.AddOption("Algoritam za sluchayniq izbor RC(random choice)", -1);
-	q33.AddOption("Algoritam FIFO", -1);
-	q33.AddOption("Algoritam LFU(Least Frequently Used)", -1);
-	q33.AddOption("Algoritam LRU(Least Recently Used)", -1);
-	q33.AddOption("Nito edin ot posochenite", 1);//Algoritmite za upravlenie na zamestvaneto, koito se osnovavat na ocenka na veroqtnostta za obryshtenie na bloka v budeshte vreme se narichat fizicheski nerealiziruemi
+	Question q33("Кои от изброените алгоритми за управление на заместването на блокове при кеш-паметите се основават на оценка на вероятността за обръщение към блока в бъдеще време?");
+	q33.AddOption("Алгоритъм за случайния избор RC (random choice)", -1);
+	q33.AddOption("Алгоритъм FIFO", -1);
+	q33.AddOption("Алгоритъм LFU (Least Frequently Used)", -1);
+	q33.AddOption("Алгоритъм LRU (Least Recently Used)", -1);
+	q33.AddOption("Нито един от посочените.", 1);//Algoritmite za upravlenie na zamestvaneto, koito se osnovavat na ocenka na veroqtnostta za obryshtenie na bloka v budeshte vreme se narichat fizicheski nerealiziruemi
 	exam.push_back(q33);						//src http://www.tyanev.com/resources/books/ComputerOrganization/OK_632.HTM?fbclid=IwAR1HMqF44Y7Y8QsChrI4_m4pZPm4yy4BZJmsDMuHMyWh2jLShvHi7oc6mcw
 
 	//virtual memory
-	Question q11("Koy ot posochenite metodi ne e metod za preobrazuvane na virtualni adresi?");
-	q11.AddOption("Metod na stranichna organizaciq", -1);
-	q11.AddOption("Metod na segmentno-stranichna organizaciq", -1);
-	q11.AddOption("Metod na lokalnostta", 1);
-	q11.AddOption("Metod na segmentna organizaciq", -1);
+	Question q11("Кой от посочените методи не е метод за преобразуване на виртуални адреси?");
+	q11.AddOption("Метод на странична организация", -1);
+	q11.AddOption("Метод на сегментно-странична организация", -1);
+	q11.AddOption("Метод на локалността", 1);
+	q11.AddOption("Метод на сегментна организация", -1);
 	exam.push_back(q11);
 
-	Question q3("Kolko e maksimalniqt broy stranici s razmer na stranicite 4k pri 32 bitov adres?");
+	Question q3("Колко е максималният брой страници с размер на страниците 4k при 32-битов адрес?");
 	q3.AddOption("1M", 1);
 	q3.AddOption("64k", -1);
 	q3.AddOption("5k", -1);
 	q3.AddOption("20k", -1);
 	exam.push_back(q3);
 
-	Question q4("Kakvo sudurja TLB pri stranichna organizaciq na pametta?");
-	q4.AddOption("Momentna karta na sustoqnieto na stranicite na operativnata pamet", 1);
-	q4.AddOption("Tablica s nomera na fizicheski stranici, prinadlejashti na daden proces", -1);
-	q4.AddOption("Tablica s nomera na virtualni stranici, prinadlejashti na daden proces", -1);
-	q4.AddOption("Tablica na stranicite na diska", -1);
+	Question q4("Какво съдържа TLB при странична организация на паметта?");
+	q4.AddOption("Моментна карта на състоянието на страниците на оперативната памет", 1);
+	q4.AddOption("Таблица с номера на физически страници, принадлежащи на даден процес", -1);
+	q4.AddOption("Таблица с номера на виртуални страници, принадлежащи на даден процес", -1);
+	q4.AddOption("Таблица на страниците на диска", -1);
 	exam.push_back(q4);
 
-	Question q5("Koq ot izbroenite harakteristiki ne opisva tablicata na stranicite?");
-	q5.AddOption("Tablicata na stranicite se sustoi ot redove, vseki red ot tablicata suotvetstva na nomer na virtualna stranica", -1);
-	q5.AddOption("Tablicata na stranicite sudurja informaciq za aktivnite procesi", 1);
-	q5.AddOption("Tablicata na stranicite e dopulnena s bit za prisustvie, pokazvasht dali suotvetnata stranica se namira v svobodnata pamet", -1);
-	q5.AddOption("Tablicata na stranicite se pazi nqkude v operativnata pamet", -1);
+	Question q5("Коя от изброените характеристики не описва таблицата на страниците?");
+	q5.AddOption("Таблицата на страниците се състои от редове, всеки ред от таблицата съответства на номер на виртуална страница", -1);
+	q5.AddOption("Таблицата на страниците съдържа информация за активните процеси", 1);
+	q5.AddOption("Таблицата на страниците е допълнена с бит за присъствие, показващ дали съответната страница се намира в свободната памет", -1);
+	q5.AddOption("Таблицата на страниците се пази някъде в оперативната памет", -1);
 	exam.push_back(q5);
 
-	Question q6("Kakvo e prednaznachenieto na TLB?");
-	q6.AddOption("Da minimizira zagubata na burzodeystvie pri tarsene na fizicheskoto razpolojenie na dannite", 1);
-	q6.AddOption("Da preobrazuva virtualnite stranichni adresi vuv fizicheski", -1);
-	q6.AddOption("Da namali proizvoditelnostta na harduerna implementaciq", -1);
+	Question q6("Какво е предназначението на TLB?");
+	q6.AddOption("Да минимизира загубата на бързодействие при търсене на физическото разположение на данните", 1);
+	q6.AddOption("Да преобразува виртуалните странични адреси във физически", -1);
+	q6.AddOption("Да намали производителността на хардуерна имплементация", -1);
 	exam.push_back(q6);
 
-	Question q7("Kakvi tipove pamet se izpolzvat za sahranenie i poddurjane na tablicite na stranicite pri statichna organizaciq na pametta?");
-	q7.AddOption("Keshova s direktna organizaciq", -1);
-	q7.AddOption("Asociativni keshove", 0.5);
-	q7.AddOption("Mnojestveno asociativni keshove", 0.5);
-	q7.AddOption("Vunshna diskova pamet", -1);
-	q7.AddOption("Glavna pamet", -1);
+	Question q7("Какви типове памет се използват за съхранение и поддържане на таблиците на страниците при статична организация на паметта?");
+	q7.AddOption("Кешова с директна организация", -1);
+	q7.AddOption("Асоциативни кешове", 0.5);
+	q7.AddOption("Множество асоциативно кешове", 0.5);
+	q7.AddOption("Външна дискова памет", -1);
+	q7.AddOption("Главна памет", -1);
 	exam.push_back(q7);
 
 	//addressing modes
-	Question q8("Posochete za koy ot izbroenite rejimi na adresaciq se otnasq pokazanata figura\n|  kod |  operand |");
-	q8.AddOption("Indeksna", -1);
-	q8.AddOption("Kosvena", -1);
-	q8.AddOption("Vlojena", -1);
-	q8.AddOption("Neposredstvena", 1);
+	Question q8("Посочете за кой от изброените режими на адресация се отнася показаната фигура\n| код | операнд |");
+	q8.AddOption("Индексна", -1);
+	q8.AddOption("Косвена", -1);
+	q8.AddOption("Вложена", -1);
+	q8.AddOption("Непосредствена", 1);
 	exam.push_back(q8);
 
-	Question q9("Kak se ukazva stoynostta na operanda pri registrov rejim na adresaciq?");
-	q9.AddOption("Zadava se v koda na instrukciqta", -1);
-	q9.AddOption("Zadava se chrez konstantno otmestvane sprqmo nachaloto na programniq segent", -1);
-	q9.AddOption("Zadava se s nomera na registara", 1);
+	Question q9("Как се оказва стойността на операнда при регистров режим на адресация?");
+	q9.AddOption("Задава се в кода на инструкцията", -1);
+	q9.AddOption("Задава се чрез константно отместване спрямо началото на програмния сегмент", -1);
+	q9.AddOption("Задава се с номера на регистъра", 1);
 	exam.push_back(q9);
 
-	Question q10("Pri koy ot izbroenite metodi na adresaciq v adresnata chast na instrukciqta e zapisan adresen ukazatel?");
-	q10.AddOption("Indeksna adresaciq", -1);
-	q10.AddOption("Direktna adresaciq", -1);
-	q10.AddOption("Indeksna adresaciq s registri", -1);
-	q10.AddOption("Neposredstvena adresaciq", -1);
-	q10.AddOption("Indirektna adresaciq", 1);
+	Question q10("При кой от изброените методи на адерсация в адресната част на инструкцията е записан адресен указател?");
+	q10.AddOption("Индексна адресация", -1);
+	q10.AddOption("Директна адресация", -1);
+	q10.AddOption("Индексна адресация с регистри", -1);
+	q10.AddOption("Непосредствена адресация", -1);
+	q10.AddOption("Индиректна адресация", 1);
 	exam.push_back(q10);
 
-	Question q12("Kude e mestopolojenieto na operanda pri registrovo kosvena adresaciq?");
-	q12.AddOption("V registar", -1);
-	q12.AddOption("V osnovnata pamet", 1);
-	q12.AddOption("Vav vtorichnata pamet", -1);
-	q12.AddOption("V koda na instrukciqta", -1);
+	Question q12("Къде е местоположението на операнда при регистрово косвена адресация?");
+	q12.AddOption("В регистър", -1);
+	q12.AddOption("В основната памет", 1);
+	q12.AddOption("Във вторичната памет", -1);
+	q12.AddOption("В кода на инструкцията", -1);
 	exam.push_back(q12);
 
-	Question q13("Kak se ukazva efektivniq adres na operanda v pametta pri neposredstven rejim na adresaciq?");
-	q13.AddOption("Chrez adres na registar na mikroprocesora", -1);
-	q13.AddOption("Chrez stekoviq ukazatel", -1);
-	q13.AddOption("Chrez adresnoto pole na operanda v koda na instrukciqta", 1);
+	Question q13("Как се указва ефективния адрес на операнда в паметта при непосредствен режим на адресация?");
+	q13.AddOption("Чрез адрес на регистър на микропроцесора", -1);
+	q13.AddOption("Чрез стековия указател", -1);
+	q13.AddOption("Чрез адресното поле на операнда в кода на инструкцията", 1);
 	exam.push_back(q13);
 
-	Question q28("Kolko e maksimalniqt broi stranici s razmer 8 pri 8 bitov adres?");
+	Question q28("Колко е максималният брой страници с размер 8 при 8-битов адрес?");
 	q28.AddOption("16", -1);
 	q28.AddOption("32", 1);
 	q28.AddOption("64", -1);
@@ -302,7 +304,7 @@ int main()
 	q28.AddOption("4k", -1);
 	exam.push_back(q28);
 
-	Question q29("Pri razmer na stranicite 8 i 8-bitov adres, koy red na tablicata sudurja adresa na stranicata?");
+	Question q29("При рамер на страниците 8 и 8-битов адрес, кой ред на таблицата съдържа адреса на страницата?");
 	q29.AddOption("3", 1);
 	q29.AddOption("5", -1);
 	q29.AddOption("7", -1);
@@ -311,145 +313,145 @@ int main()
 	exam.push_back(q29);
 
 	//pipelining
-	Question u7("Poso4ete pri konveyernata obrabotka na koq ot dadenite instrukcii posledovatelnostti vuznikvat hazart ot tipa write-after-read");
+	Question u7("Посочете при конвейерната обработка на коя от дадените инструкции последователностти възникват хазарт от типа write-after-read");
 	u7.AddOption("ADD R3, R2, R1; R3 = R2 + R1", -1);
 	u7.AddOption("ADD R3, R2, R1; R3=R2+R1  SUB R2, R3, 1; R2=R3-1  ADD R3, R2, R5; R3 = R2+R5", 1);
 	u7.AddOption("ADD R3, R4, R5 SUB R2, R2, 1 BEQ R2, R0, L1", -1);
 	exam.push_back(u7);
 
-	Question u8("Znaeiki, che uskorenieto e pravoproporcionalno na broq fazi na konveyera, zashto realno poluchenoto uskorenie e po-malko v sravnenie s teoreti4no dostijimoto?");
-	u8.AddOption("Zaradi hazartite", 0.5);
-	u8.AddOption("Zaradi po-visokata patentnost za individualnite instrukcii", -1);
-	u8.AddOption("Zaradi vremeto neobhodimo za zapulvane na konveyera", 0.5);
+	Question u8("Знаейки, че ускорението е правопропорционално на броя фази на конвейера, защо реално полученото ускорение е по-малко в сравнение с теоретично достижимото?");
+	u8.AddOption("Заради хазартите", 0.5);
+	u8.AddOption("Заради по-високата патентност за индивидуалните инструкции", -1);
+	u8.AddOption("Заради времето необходимо за запълване на конвейера", 0.5);
 	exam.push_back(u8);
 
-	Question u9("Razdelqneto na instrukciite na otdelni fazi na obrabotka e harakterno za:(izberete edno ili poveche)");
-	u9.AddOption("razpredelenata obrabotka", -1);
-	u9.AddOption("paralelnata obrabotka", -1);
-	u9.AddOption("sistemnata obrabotka", -1);
-	u9.AddOption("konveyernata obrabotka", 0.5);
-	u9.AddOption("poddurjaneto na paralelizum na nivo instrukcii", 0.5);
+	Question u9("Разделянето на инструкциите на отделни фази на обработка е характерно за (изберете едно или повече):");
+	u9.AddOption("разпределената обработка", -1);
+	u9.AddOption("паралелната обработка", -1);
+	u9.AddOption("системната обработка", -1);
+	u9.AddOption("конвейерната обработка", 0.5);
+	u9.AddOption("поддържането на паралелизъм на ниво инструкции", 0.5);
 	exam.push_back(u9);
 
-	Question u10("Kolko mashinni cikula shte sa neobhodimi za konveyerna obrabotka na 1500 instrukcii v 5-fazen lineen instrukcionen konveyer?");
+	Question u10("Колко машинни цикъла ще са необходими за конвейерна обработка на 1500 инструкции в 5-фазен линеен инструкционен конвейер?");
 	u10.AddOption("1505", -1);
 	u10.AddOption("7500", -1);
 	u10.AddOption("18", -1);
 	u10.AddOption("1504", 1);
 	exam.push_back(u10);
 
-	Question u11("Kak se preodolqvat hazartite v konveyera pri dostup do obshti resursu v instrukcionniq potok?(ibereze edno ili pove4e)");
-	u11.AddOption("chrez prenarejdane na instrukcionniq potok ot kompilatora", -1);
-	u11.AddOption("chrez predskazvane na prehodite v instrukcionniq potok", -1);
-	u11.AddOption("chrez dublirane na kritichnite fazi", -1);
-	u11.AddOption("chrez blokirasti tehniki na konveyera za opredeleno vreme i posledovatelna obrabotka", 0.5);
-	u11.AddOption("chrez preskachane na kritichnite fazi", -1);
-	u11.AddOption("chrez vuvejdane na zakusneniq i modificirane glavnata tablica na zaetost na konveyera", 0.5);
+	Question u11("Как се преодоляват хазартите в конвейера при достъп до общи ресурси в инструкционния поток (изберете едно или повече)?");
+	u11.AddOption("чрез пренареждане на инструкционния поток от компилатора", -1);
+	u11.AddOption("чрез предсказване на преходите в инструкционния поток", -1);
+	u11.AddOption("чрез дублиране на критичните фази", -1);
+	u11.AddOption("чрез блокиращи техники на конвейера за определено време и последователна обработка", 0.5);
+	u11.AddOption("чрез прескачане на критичните фази", -1);
+	u11.AddOption("чрез въвеждане на закъснения и модифициране главната таблица на заетост на конвейера", 0.5);
 	exam.push_back(u11);
 
-	Question u12("V instrukcionniq konveyer se izpulnqvat ednovremenno(izberete edno)");
-	u12.AddOption("Prazni instrukcii", -1);
-	u12.AddOption("Instrukcii za usloven i bezusloven prehod", -1);
-	u12.AddOption("Instrukcii v realni fazi", 1);
-	u12.AddOption("Zapisi na danni ot registrite kum procesora", -1);
+	Question u12("В инструкционния конвейер се изпълняват едновременно (изберете едно):");
+	u12.AddOption("Празни инструкции", -1);
+	u12.AddOption("Инструкции за условен и безусловен преход", -1);
+	u12.AddOption("Инструкции в реални фази", 1);
+	u12.AddOption("Записи на данни от регистрите към процесора", -1);
 	exam.push_back(u12);
 
-	Question u13("Koi ot izbroenite tehniki se izpolzvat pri razreshavaneto na problemi pri konveyernoto izpulnenie na instrukcii s prehod? (izberete edno ili pove4e)");
-	u13.AddOption("Dublirane na konveyernite resursi", -1);
-	u13.AddOption("Mnojestveno predvaritelno izpulvane na instrukcii", 1);
+	Question u13("Кои от изброените техники се използват при разрешаването на проблеми при конвейерното изпълнение на инструкции с преход (изберете едно или повече)?");
+	u13.AddOption("Дублиране на конвейерните ресурси", -1);
+	u13.AddOption("Множествено предварително изпълване на инструкции", 1);
 	u13.AddOption("Prediction Look-up Table", -1);
-	u13.AddOption("Izpolzvane na specializirani funkcionalni ustroistva za chetene na operaciite ili zapis na rezultatite v pametta", -1);
-	u13.AddOption("BTB bufer", -1);
+	u13.AddOption("Използване на специализирани функционални устройства за четене на операциите или запис на резултатите в паметта", -1);
+	u13.AddOption("BTB buffer", -1);
 	exam.push_back(u13);
 
-	Question u14("Kak se preodolqvat konfliktite za pamet pri konveyeriziranoto izpulnenie na instrukcionniq potok?");
-	u14.AddOption("chrez vuvejdane na zakusneniq i modificirane izhodnata tablica na zaetost na konveyera ", -1);
-	u14.AddOption("chrez predskazvane na prehodite v instrukcionniq potok", 1);
-	u14.AddOption("chrez prenarejdane na instrukcionniq potok ot kompilatora", -1);
-	u14.AddOption("chrez izpolzvane na specializirano funkcionalno ustroistvo za chetene na operaciite ili zapis na rezultati v pametta", -1);
+	Question u14("Как се преодоляват конфликтите за памет при конвейеризираното изпълнение на инструкционния поток?");
+	u14.AddOption("чрез въвеждане на закъснения и модифициране изгходната таблица на заетост на конвейера", -1);
+	u14.AddOption("чрез предсказване на преходите в инструкционния поток", 1);
+	u14.AddOption("чрез пренареждане на инструкционния поток от компилатора", -1);
+	u14.AddOption("чрез използване на специализирано функционално устройство за четене на операциите или записна резултати в паметта", -1);
 	exam.push_back(u14);
 
-	Question u15("Posochete koi ot izbroenite faktori sa prichina za ponijavane na potokovata skorost pri konveyernata obrabotka (izberete edno ili pove4e)");
-	u15.AddOption("Zavisimosti po danni", 0.25);
-	u15.AddOption("Predskazvane na prehoda v informacionniq potok", -1);
-	u15.AddOption("Temp na inicializaciq na konveyera", -1);
-	u15.AddOption("Konflikti pri dostup na obshti resursi", 0.25);
-	u15.AddOption("Patentnost na konveyernata obrabotka", -1);
-	u15.AddOption("Izpolzvaemost na funkcionalnite ustroistva po konveyera", -1);
-	u15.AddOption("Anti-zavisimosti po danni", 0.25);
-	u15.AddOption("Prehodi v informacionniq potok, zasqgashi modificiraneto na programniq broqch", 0.25);
+	Question u15("Посочете кои от изброените фактори са причина за понижаване на потоковата скорост при конвейерната обработка (изберете едно или повече):");
+	u15.AddOption("Зависимости по данни", 0.25);
+	u15.AddOption("Предсказване на прехода в информационния поток", -1);
+	u15.AddOption("Темп на инициализация на конвейера", -1);
+	u15.AddOption("Конфликти при достъп на общи ресурси", 0.25);
+	u15.AddOption("Патентност на конвейерната обработка", -1);
+	u15.AddOption("Използваемост на функционалните устройства по конвейера", -1);
+	u15.AddOption("Анти-зависимости по данни", 0.25);
+	u15.AddOption("Преходи в информационния поток, засягащи модифицирането на програмния брояч", 0.25);
 	exam.push_back(u15);
 
-	Question u16("Na kakvo se duljat precedurnite zavisimosti");
-	u16.AddOption("Edinstveno na instrukcii za bezusloven prehod", -1);
-	u16.AddOption("Edinstveno na instrukcii za usloven prehod ", -1);
-	u16.AddOption("Instrukcii za bezusloven prehod i instrukcii s osushtestven usloven prehod v instrukcionniq potok na programata", 1);
-	u16.AddOption("Ednovremenni zaqvki za edin i susht resurs", -1);
+	Question u16("На какво се дължат процедурните зависимости?");
+	u16.AddOption("Единствено на инструкции за безусловен преход", -1);
+	u16.AddOption("Единствено на инструкции за условен преход", -1);
+	u16.AddOption("Инструкции за безусловен преход и инструкции с осъществен условен преход в инструкционния поток на програмата", 1);
+	u16.AddOption("Едновременни заявки за един и същ ресурс", -1);
 	exam.push_back(u16);
 
-	Question u17("Ot kakvo se predizvikvat resursnite konflikti?");
-	u17.AddOption("Ne dobro planirane na resursite na instrukcionniq konveyer", -1);
-	u17.AddOption("Ednovremenni zaqvki za edni i susti resursi", 1);
-	u17.AddOption("Ot vuzniknali mehuri v konveyera", -1);
+	Question u17("От какво се предизвикват ресурните конфликти?");
+	u17.AddOption("Недобро планиране на ресурсите на инструкционния конвейер", -1);
+	u17.AddOption("Едновременни заявки за едни и същи ресурси", 1);
+	u17.AddOption("От възникнали мехури в конвейера", -1);
 	exam.push_back(u17);
 
-	Question u18("Koi ot izbroenite metodi se izpolzva za reshavane na problema s instrukcionnite hazarti ? (izberete edno ili pove4e)");
-	u18.AddOption("Prezarejdane na konveyera ", -1);
-	u18.AddOption("Uveli4avane razmera na bufernata pamet v otdelnite funkcionalni ustroistva", -1);
-	u18.AddOption("Oprostqvane formata na instrukciite izpolzvani ot programata", -1);
-	u18.AddOption("Razdelqne na instrukcionniq cikul na dopulnitelni fazi na obrabotka", -1);
-	u18.AddOption("Prenarejdane na instrukcii ot kompilatora", 1);
+	Question u18("Кои от изброените методи се използва за решаване на проблема с инструкционните хазарти (изберете едно или повече)?");
+	u18.AddOption("Презареждане на конвейера", -1);
+	u18.AddOption("Увеличаване размера на буферната памет в отделните функционални устройства", -1);
+	u18.AddOption("Опростяване формата на инструкциите използвани от програмата", -1);
+	u18.AddOption("Разделяне на инструкционния цикъл на допълнителни фази на обработка", -1);
+	u18.AddOption("Пренареждане на инструкции от компилатора", 1);
 	exam.push_back(u18);
 
 	//random
-	Question q14("Superskalaren procesor obrabotva dva instrukcionni potoka(ot prosti i slojni instrukcii)Koq ot izbroenite fazi na razrabotka e obshta i za dvata potoka?");
-	q14.AddOption("Izvlichane", 1);
-	q14.AddOption("Izpalnenie", -1);
-	q14.AddOption("Zapis na rezultata", -1);
-	q14.AddOption("Dekodirane", -1);
+	Question q14("Суперскаларен процесор обработва два инструкционни потока (от прости и сложни инструкции). Коя от изброените фази на разработка е обща и за двата потока?");
+	q14.AddOption("Извличане", 1);
+	q14.AddOption("Изпълнение", -1);
+	q14.AddOption("Запис на резултата", -1);
+	q14.AddOption("Декодиране", -1);
 	exam.push_back(q14);
 
-	Question q15("Kakvo e prednaznachenieto na mehanizmite za zashtita na pametta?");
-	q15.AddOption("Da ne dopuskat modificirane na sistemniq softuer ot prilojeniq", -1);
-	q15.AddOption("Da ogranichavat dostupa do suhranqvanata v sistemata informaciq", -1);
-	q15.AddOption("Da otkrivat greshki pri adresiraneto predi izvurshvaneto na nerazreshen dostup", -1);
-	q15.AddOption("Da ogranichavat dostupa do opredeleni segmenti ili stranici", 1);
+	Question q15("Какво е предназначението на механизмите за защита на паметта?");
+	q15.AddOption("Да не допускат модифициране на системния софтуер от приложения", -1);
+	q15.AddOption("Да ограничават достъпа до съхраняванията в системата информация", -1);
+	q15.AddOption("Да откриват грешки при адресирането преди извършването на неразрешен достъп", -1);
+	q15.AddOption("Да ограничават достъпа до определени сегменти или страници", 1);
 	exam.push_back(q15);
 
-	Question q16("Shinata PCI v procesornata arhitektura se qvqva most mejdu:");
-	q16.AddOption("shina EISA i periferiqta", 1);
-	q16.AddOption("sistemnata shina na mikroprocesora i shinata EISA", -1);
-	q16.AddOption("sistemnata shina na mikroprocesora i osnovnata pamet", -1);
-	q16.AddOption("mikroprocesora i kesh pametta L2", -1);
+	Question q16("Шината PCI в процесорната архитектура се явява мост между:");
+	q16.AddOption("шина EISA и периферията", 1);
+	q16.AddOption("системната шина на микропроцесора и шината EISA", -1);
+	q16.AddOption("системната шина на микропроцесора и основната памет", -1);
+	q16.AddOption("микропроцесора и кеш-паметта L2", -1);
 	exam.push_back(q16);
 
-	Question q17("Koq/koi ot izbroenite shini ne sa chast ot sistemnata shina?");
-	q17.AddOption("Shina za danni", -1);
-	q17.AddOption("Shina za logicheski signali", 1);
-	q17.AddOption("Kontrolna shina", -1);
-	q17.AddOption("Adresna shina", -1);
+	Question q17("Коя/кои от изброените шини не са част от системната шина?");
+	q17.AddOption("Шина за данни", -1);
+	q17.AddOption("Шина за логически сигнали", 1);
+	q17.AddOption("Контролна шина", -1);
+	q17.AddOption("Адресна шина", -1);
 	exam.push_back(q17);
 
-	Question q18("V rejim na direkten dostap do pametta, upravlenieto na obmena se poema ot:");
-	q18.AddOption("Ustroystvoto za vhod/izhod", 1);
-	q18.AddOption("Procesora", -1);
-	q18.AddOption("Glavnata pamet", -1);
+	Question q18("В режим на директен достъп до паметта, управлението на обмена се поема от:");
+	q18.AddOption("Устройството за вход/изход", 1);
+	q18.AddOption("Процесора", -1);
+	q18.AddOption("Главната памет", -1);
 	exam.push_back(q18);
 
-	Question q26("Kolko provodna moje da bude USB platinata?");
+	Question q26("Колко проводна може да бъде USB платината?");
 	q26.AddOption("4", 0.5);
 	q26.AddOption("9", 0.5);
 	q26.AddOption("6", -1);
 	exam.push_back(q26);
 
-	Question q27("Koq e pravilnata definiciq za termina CISC");
+	Question q27("Коя е правилната дефиниция за термина CISC");
 	q27.AddOption("Complex Instruction Set Computing", 1);
 	q27.AddOption("Corect Index System Call", -1);
 	q27.AddOption("Chip Ignore Call", -1);
 	q27.AddOption("Central Integer Stack Index", -1);
 	exam.push_back(q27);
 
-	Question q39("Koq e pravilnata definiciq za termina RISC");
+	Question q39("Коя е правилната дефиниция за термина RISC");
 	q39.AddOption("Reduced Instruction Set Computing", 1);
 	q39.AddOption("Random Index System Call", -1);
 	q39.AddOption("Risk Instruction Stack Call", -1);
@@ -457,21 +459,21 @@ int main()
 	exam.push_back(q39);
 
 	//ISA
-	Question q19("V zavisimost ot rejima na adresaciq vremeto za izpalnenie na edna procesorna instrukciq moje da varira v znachitelna stepen. Pri koq ot izbroenite podredbi na adresni rejimi vremeto shte se izmenq ot mnogo kratko do mnogo dulgo?");
-	q19.AddOption("direktna, kosvena, neposredstvena", -1);
-	q19.AddOption("neposredstvena, kosvena, direktna", -1);
-	q19.AddOption("neposredstvena, direktna, kosvena", 1);
-	q19.AddOption("kosvena, neposredstvena, direktna", -1);
+	Question q19("В зависимост от режима на адресация времето на изпълнение на една процесорна инструкция може да варира в значителна степен. При коя от изброените подредби на адресни режими времето ще се изменя от много кратко до много дълго?");
+	q19.AddOption("директна, косвена, непосредствена", -1);
+	q19.AddOption("непосредствена, косвена, директна", -1);
+	q19.AddOption("непосредствена, директна, косвена", 1);
+	q19.AddOption("косвена, непосредствена, директна", -1);
 	exam.push_back(q19);
 
-	Question q20("Koy ot izbroenite etapi ne e chast ot instrukcionniq cikal?");
-	q20.AddOption("Prenarejdane", 1);
-	q20.AddOption("Izvlichane", -1);
-	q20.AddOption("Izpalnenie", -1);
-	q20.AddOption("Dekodirane", -1);
+	Question q20("Кой от изброените етапи не е част от инструкционния цикъл?");
+	q20.AddOption("Пренареждане", 1);
+	q20.AddOption("Извличане", -1);
+	q20.AddOption("Изпълнение", -1);
+	q20.AddOption("Декодиране", -1);
 	exam.push_back(q20);
 
-	Question q21("Koi procesori ot izbroenite procesorni familii se harakterizirat s RISC-arhitektura?");
+	Question q21("Кои процесори от изброените процесорни фамилии се харектиризират с RISC-архитектура?");
 	q21.AddOption("SPARC", 0.33);
 	q21.AddOption("CYRIX", -1);
 	q21.AddOption("ALPHA", -1);
@@ -481,40 +483,40 @@ int main()
 	q21.AddOption("ARM", 0.33);
 	exam.push_back(q21);
 
-	Question q22("Kakva sistema instrukcii imat razlichnite familii multiprocesorni arhitekturi?");
-	q22.AddOption("Ednakva", -1);
-	q22.AddOption("Suvpadashta otchasti", 0.5);
-	q22.AddOption("Izcqlo razlichna", 0.5);
+	Question q22("Каква система инструкции имат различните фамилии мултипроцесорни архитектури?");
+	q22.AddOption("Еднаква", -1);
+	q22.AddOption("Съвпадаща отчасти", 0.5);
+	q22.AddOption("Изцяло различна", 0.5);
 	exam.push_back(q22);
 
-	Question q23("Koy/Koi ot izbroenite etapi e chast ot instrukcionniq cikal?");
-	q23.AddOption("Prenarejdane", -1);
-	q23.AddOption("Izvlichane", 0.34);
-	q23.AddOption("Izpalnenie", 0.33);
-	q23.AddOption("Dekodirane", 0.33);
+	Question q23("Кой/кои от изброените етапи е част от инструкционния цикъл?");
+	q23.AddOption("Пренареждане", -1);
+	q23.AddOption("Извличане", 0.34);
+	q23.AddOption("Изпълнение", 0.33);
+	q23.AddOption("Декодиране", 0.33);
 	exam.push_back(q23);
 
-	Question q24("Koe ot tvardeniqta otnosno razmera na stranicite e nevqrno");
-	q24.AddOption("Po-golemiqt razmer na stranicite uvelichava vremeto za vhodno-izhodni operacii(chetene, zapis na stranici) po vreme na izpulnenie na programite", 1);
-	q24.AddOption("Po-golemiqt razmer vodi do vavejdane na izlishna informaciq, koqto moje da e izlishna", -1);
-	q24.AddOption("Po-malkiqt razmer na stranicata vodi do namalqvane na vatreshnata fragmentaciq, koqto e 1/2 ot poslednata stranica", -1);
+	Question q24("Кое от твърденията относно размера на страниците е невярно?");
+	q24.AddOption("По-големият размер на страниците увеличава времето за входно-изходни операции (четене, запис на страници) по време на изпълнение на програмите", 1);
+	q24.AddOption("По-големият размер води до въвеждане на излишна информация, която може да е излишна", -1);
+	q24.AddOption("По-малкият размер на страницата води до намаляване на вътрешната фрагментация, която е 1/2 от последната страница", -1);
 	exam.push_back(q24);
 
 	//komp arch
-	Question u1("Ot koi faktori zavisi proizvoditelnostta na komputurnite sistemi?");
-	u1.AddOption("Ot vremeto za dostup do registrirane", -1);
-	u1.AddOption("Arhitekturata i tehnologiqta", 1);
-	u1.AddOption("Ot taktovata 4estota", -1);
+	Question u1("От кои фактори зависи производителността на компютърните системи?");
+	u1.AddOption("От времето за достъп до регистриране", -1);
+	u1.AddOption("Архитектурата и технологията", 1);
+	u1.AddOption("От тактовата честота", -1);
 	exam.push_back(u1);
 
-	Question u2("Edinicata za izmervane na proizvoditelnostta MIPS za supostavqne na ednotipni procesorni arhitekturi se osnovava na:");
-	u2.AddOption("Broi operacii s operandi ot virtualnata pamet", -1);
-	u2.AddOption("Broi operacii s operandi ot kesh pametta", -1);
-	u2.AddOption("Broi operacii s operandi ot glavnata pamet", 1);
-	u2.AddOption("Broi operacii s operandi ot flash-pametta", -1);
+	Question u2("Единицата за измерване на производителността MIPS за съпостяване на еднотипни процесорни архитектури се основава на:");
+	u2.AddOption("Брой операции с операнди от виртуалната памет", -1);
+	u2.AddOption("Брой операции с операнди от кеш-паметта", -1);
+	u2.AddOption("Брой операции с операнди от главната памет", 1);
+	u2.AddOption("Брой операции с операнди от флаш-паметта", -1);
 	exam.push_back(u2);
 
-	Question u3("Osnovni proizvoditeli na x86 arhitekturata sa:(Izberete edno ili poveche)");
+	Question u3("Основни производители на x86 архитектурата са (изберете едно или повече):");
 	u3.AddOption("IBM", 0.34);
 	u3.AddOption("Hewlett-Packard", 0.33);
 	u3.AddOption("Intel", 0.33);
@@ -522,74 +524,74 @@ int main()
 	u3.AddOption("Advanced Micro Device", -1);
 	exam.push_back(u3);
 
-	Question u4("Za kakvo sluji programniqt broqch (Izberete edno)");
-	u4.AddOption("Za ukazvane adresa na sledvashtata instrukciq za izpylnenie", 1);
-	u4.AddOption("Za suhranqvane na rezultata ot aritmetichnite operacii izpulnqvani v ALU-to", -1);
-	u4.AddOption("Za otchitane broq na izpulneniqta na dadena instrukciq ", -1);
-	u4.AddOption("Za otchitane na procenta pamet zaeman ot izpulnqvashtata se programa", -1);
+	Question u4("За какво служи програмният брояч (изберете едно)?");
+	u4.AddOption("За указване на адреса на следващата инструкция за изпълнение", 1);
+	u4.AddOption("За съхраняване на резултата от аритметичните операции изпълнявани в ALU-то", -1);
+	u4.AddOption("За отчитане броя на изпълненията на дадена инструкция", -1);
+	u4.AddOption("За отчитане на процента памет заеман от изпълняващата се програма", -1);
 	exam.push_back(u4);
 
-	Question u5("Koq e pravilnata definiciq za termina SIMD? (Izberete edno)");
+	Question u5("Коя е правилната дефиниция за термина SIMD (изберете едно)?");
 	u5.AddOption("Single Instruction, Multiple Data", 1);
 	u5.AddOption("Single Interrupt, Multiple Distribution", -1);
 	u5.AddOption("Single Input, Multiple Distributions", -1);
 	u5.AddOption("Single Integration, Multiple Dynamics", -1);
 	exam.push_back(u5);
 
-	Question u6("Koi ot izbroenite tehniki slujat za uveli4avane stepenta na paralelizum po vreme na izpulnenie na programata (izberete edno ili pove4e)");
-	u6.AddOption("nito edno ot poso4enite ", -1);
-	u6.AddOption("Prognozirane posokata na prehodite", 0.25);
-	u6.AddOption("Ednovremenno zarejdane za izpulnenie na nqkolko instrukcii i dinami4no planirane", 0.25);
-	u6.AddOption("Otkrivane i premahvane na zavisimosti po danni pri kompilirane", 0.25);
-	u6.AddOption("Reorganizaciq na ciklite po takuv na4in, 4e wsqka iteraciq w polu4eniq kod da se sustoi ot instrukcii, koito sa izbrani ot razli4ni iteracii na purvona4alniq cikul(loop unrolling)", 0.25);
+	Question u6("Кои от изброените техники служат за увеличаване степента на паралелизъм по време на изпълнение на програмата (изберете едно или повече)?");
+	u6.AddOption("Нито едно от посочените", -1);
+	u6.AddOption("Прогнозиране посоката на преходите", 0.25);
+	u6.AddOption("Едновременно зареждане за изпълнение на няколко инструкции и динамично планиране", 0.25);
+	u6.AddOption("Откриване и премахване на зависимости по данни при компилиране", 0.25);
+	u6.AddOption("Реорганизация на циклите по такъв начин, че всяка итерация в получения код да се състои от инструкции, които са избрани от различни итерации на първоначалния цикъл (loop unrolling)", 0.25);
 	exam.push_back(u6);
 
-	Question q30("Koe ot izbroenite harakterizira arhitekturnata koncepciq EPIC?");
-	q30.AddOption("Opolzotvorqvane paralelizam na nivo instrukciq chrez izprashtane na nqkolko instrukcii na obiknoveniq instrukcionen potok v razlichni funkcionalni ustroystva na konveyeara", -1);
-	q30.AddOption("Opolzotvorqvane na qven paralelizam na nivo instrukciq", 0.34);
-	q30.AddOption("Opolzotvorqvane na skritiq v programniq kod na nivo kompilator i aparatna poddrujka", 0.33);
-	q30.AddOption("Ednovremenno zarekdane za izpalnenie na nqkolko instrukcii i dinamichno planirane", -1);
-	q30.AddOption("Izpolzvane na shiroka shina za zarejdane na instrukciq i dulgi konveyeri s golqma zadrujka", 0.33);
+	Question q30("Кое от изброените характеризира архитектурната концепция EPIC?");
+	q30.AddOption("Оползотворяване паралелизъм на ниво инструкция чрез изпращане на няколко инструкции на обикновения инструкционен поток в различни функционални устройства на конвейера", -1);
+	q30.AddOption("Оползотворяване на явен паралелизъм на ниво инструкция", 0.34);
+	q30.AddOption("Оползотворяване на скрития в програмния код на ниво компилатор и апаратна поддръжка", 0.33);
+	q30.AddOption("Едновременно зареждане за изпълнение на няколко инструкции и динамично планиране", -1);
+	q30.AddOption("Използване на широка шина за зареждане на инструкция и дълги конвейери с голяма задръжка", 0.33);
 	exam.push_back(q30);
-	
-	Question q32("Za koq ot izbroenite komputarni arhitekturi se otnasqt slednite osobeonsoti:\n-Daljinata na instrukciite e stotici bitove\n-V ramkite na procesora funkcionirat paralelno mnojestvo funkcionalni ustroystva\n-Vsichki funckionalni ustroystva spodelqt ogromen obsht registrov fail");
-	q32.AddOption("Potokova", -1);
-	q32.AddOption("Superskalarna", -1);
+
+	Question q32("За коя от изброените компютърни архитектури се отнасят следните особености:\n-Дължината на инструкциите е стотици битове\n-В рамките на процесора функционират паралелно множество функционални устройства\n-Всички функционални устройства споделят огромен общ регистров файл");
+	q32.AddOption("Потокова", -1);
+	q32.AddOption("Суперскаларна", -1);
 	q32.AddOption("VLIW", 1);
 	q32.AddOption("EPIC", -1);
 	exam.push_back(q32);
 
-	Question q34("Po kakvo se razlichavat CISC ot RISC?");
-	q34.AddOption("Vsichki instrukcii se harakterizirat s oprosten format", 1);
-	q34.AddOption("Instrukciite preobladavashto sa ot tip pamet-pamet", -1);
-	q34.AddOption("Vsichki instrukcii se harakterizirat s enda is sushta duljina", -1);
-	q34.AddOption("Slojnite instrukcii se sintezirat ot po-prostite", -1);
-	q34.AddOption("Operaciite s pametta sa samo ot tipa \"Load\" i \"store\"", -1);
+	Question q34("По какво се различават CISC от RISC?");
+	q34.AddOption("Всички инструкции се характеризират с опростен формат", 1);
+	q34.AddOption("Инструкциите преобладаващо са от тип памет-памет", -1);
+	q34.AddOption("Всички инструкции се характеризират с една и съща дължина", -1);
+	q34.AddOption("Сложните инструкции се синтезират от по-простите", -1);
+	q34.AddOption("Операциите с паметта са само от типа \"Load\" и \"store\"", -1);
 	exam.push_back(q34);
 
-	Question q35("Ot kakvo se opredelq vremeto za izpalnenie na programata v procesora:\n1)algoritama 2)programniq ezik 3)kompilatora 4)sistamata procesorni instrukcii");
-	q35.AddOption("1) i 3)", 1);//in Kosyo we trust
-	q35.AddOption("3) i 4)", -1);
-	q35.AddOption("1), 2), 3 i 4))", -1);
-	q35.AddOption("1) i 2)", -1);
-	q35.AddOption("2) i 3)", -1);
-	q35.AddOption("2), 3) i 4)", -1);
+	Question q35("От какво се определя времето за изпълнение на програмата в процесора:\n1)алгоритъма 2)програмния език 3)компилатора 4)системата процесорни инструкции");
+	q35.AddOption("1) и 3)", 1);//in Kosyo we trust
+	q35.AddOption("3) и 4)", -1);
+	q35.AddOption("1), 2), 3 и 4))", -1);
+	q35.AddOption("1) и 2)", -1);
+	q35.AddOption("2) и 3)", -1);
+	q35.AddOption("2), 3) и 4)", -1);
 	exam.push_back(q35);
 
-	Question q38("Ot kakav tip e slednata istrukciq?\nADD 5,15,20");
+	Question q38("От какъв тип е следната инструкция?\nADD 5,15,20");
 	q38.AddOption("RISC", -1);
 	q38.AddOption("CISC", 1);
 	q38.AddOption("VLIW", -1);
 	exam.push_back(q38);
 
 	unsigned questionsCount = exam.size();
-	for (unsigned i = 0; i<questionsCount; ++i)
+	for (unsigned i = 0; i < questionsCount; ++i)
 		std::swap(exam[Randomize(exam.size())], exam[Randomize(exam.size())]);
-	for (unsigned i = 0; i<exam.size(); ++i)
+	for (unsigned i = 0; i < exam.size(); ++i)
 	{
 		if (i == questionsCount)
 		{
-			std::cout << "Sekciq sus sgresheni vuprosi\nnatisnete nqkoy buton\n";
+			std::cout << "Секция със сгрешени въпроси\nнатиснете някой бутон\n";
 			std::cin >> useless;
 			system("CLS");
 		}
